@@ -2,7 +2,7 @@ module Main where
 
 import Data.List(permutations)
 import Control.Monad(foldM)
-import Data.Maybe(isJust, fromJust, isNothing)
+import Data.Maybe(isJust, fromJust, isNothing, fromMaybe)
 import Data.Char(toLower, ord, chr)
 
 main :: IO ()
@@ -60,3 +60,9 @@ coreStr [a,b,c,d]
           convert = map (subtract 96 . ord . toLower)
           res = core $ convert [a,b,c,d]
 coreStr _ = Nothing
+
+-- Calculate cores for a file containing one word per line
+wordsToCores :: String -> IO ()
+wordsToCores filePath = do
+    content <- readFile filePath
+    putStr $ concatMap ((:"\n") . fromMaybe '-' . coreStr) $ lines content
