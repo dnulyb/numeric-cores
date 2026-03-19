@@ -2,7 +2,7 @@ module Main where
 
 import Data.List(permutations)
 import Control.Monad(foldM)
-import Data.Maybe(isJust, fromJust, isNothing, fromMaybe)
+import Data.Maybe(fromJust, isNothing, fromMaybe)
 import Data.Char(toLower, ord, chr)
 
 main :: IO ()
